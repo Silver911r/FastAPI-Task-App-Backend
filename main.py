@@ -50,3 +50,13 @@ async def update_task(
     db.refresh(db_task)
 
     return db_task
+
+
+@app.delete("/task/{id}", status_code=200)
+async def delete_task(id: int, db: Session = Depends(create_get_session)):
+    db_task = db.query(Task).get(id)
+    if not db_task:
+        raise HTTPException(status_code="404", detail="Task id does not exist")
+    db.delete(db_task)
+    db.commit()
+    return None
