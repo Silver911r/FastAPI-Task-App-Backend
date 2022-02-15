@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import List
 from model import Task
 from schema import task_schema
-from session import create_get_session, get_database_session
+from session import create_get_session
 
 app = FastAPI()
 
